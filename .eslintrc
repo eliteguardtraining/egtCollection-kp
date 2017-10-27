@@ -1,0 +1,57 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "globals": {
+    "__PRODUCTION__": true,
+    "__CLIENT__": true
+  },
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "max-len": 0,
+    "padded-blocks": [
+      0,
+      "always"
+    ],
+    "import/no-unresolved": 0,
+    "react/jsx-first-prop-new-line": [
+      0,
+      "never"
+    ],
+    "arrow-body-style": 0,
+    "no-underscore-dangle": 0,
+    "jsx-first-prop-new-line": 0,
+    "no-console": 0,
+    "no-confusing-arrow": 0,
+    "consistent-return": 0,
+    "no-param-reassign": 0,
+    "no-else-return": 0,
+    "react/prop-types": 0,
+    "no-irregular-whitespace": 0,
+    "no-use-before-define": 0,
+    "no-floating-decimal": 0,
+    "no-unused-expressions": 0,
+    "newline-per-chained-call": 0,
+    "array-callback-return": 0,
+    "no-return-assign": 0,
+    "react/self-closing-comp": 0,
+    "no-dupe-keys": 0,
+    "react/prefer-stateless-function": 0,
+    "new-cap": 0,
+    "no-case-declarations": 0,
+    "camelcase": 0,
+    "prefer-template": 0,
+    "no-nested-ternary": 0,
+    "func-names": 0,
+    "semi": [
+      2,
+      "never"
+    ],
+    "react/jsx-quotes": 0,
+    "jsx-quotes": [
+      2,
+      "prefer-single"
+    ]
+  }
+}

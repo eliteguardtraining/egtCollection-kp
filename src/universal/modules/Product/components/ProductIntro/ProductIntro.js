@@ -2,33 +2,41 @@ import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import PhoneNumber from 'universal/components/PhoneNumber/PhoneNumber'
 import Radium from 'radium'
-import IntroVideo from 'universal/components/IntroVideo/IntroVideo'
 import shallowCompare from 'react-addons-shallow-compare'
 import { imgResponsive } from 'universal/styles/helpers'
-import { black } from 'universal/styles/colors'
-import { track, VIDEO_PLAYED, VIDEO_PAUSED, VIDEO_CROSSED_TIME, VIDEO_ENDED } from 'universal/utils/analytics'
-import introBGSmall from 'universal/images/intro-bg-sm.png'
-import logo from './images/egtLogo.png'
+import { black, orange, white } from 'universal/styles/colors'
+import { headerStack } from 'universal/styles/fonts'
 
 // Images
-const headerBg = 'https://dphk75aogf7d9.cloudfront.net/egt-x-2/bg.png'
+import logo from './images/egtLogo.png'
+import introBGSmall from 'universal/images/intro-bg-sm.png'
+import bg from './images/bg.png'
+import bballTopLeft from './images/bball_top_left.png'
+import bballTopRight from './images/bball_top_right.png'
+import kp from './images/kp.png'
+import emblem from './images/emblem.png'
 
 const styles = {
   Intro: {
+    position: 'relative',
     backgroundColor: black,
-    backgroundImage: `url(${headerBg})`,
+    backgroundImage: `url(${bg})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no repeat',
     backgroundPosition: 'center center',
     textAlign: 'center',
     position: 'relative',
     padding: '10px 0 50px 0',
+    fontFamily: headerStack,
+    textTransform: 'uppercase',
+    color: white,
+    fontSize: 10,
     '@media (max-width: 767px)': {
+      fontSize: 6,
       backgroundImage: `url(${introBGSmall})`,
     },
   },
   header: {
-    position: 'relative',
     zIndex: 5,
   },
   brand: Object.assign({}, imgResponsive, {
@@ -48,15 +56,15 @@ const styles = {
   headerImg: {
     position: 'absolute',
     top: 0,
-    height: '100%',
+    maxHeight: '100%',
     '@media (max-width: 767px)': {
       display: 'none',
     },
   },
-  headerImgLeft: {
+  topLeft: {
     left: 0,
   },
-  headerImgRight: {
+  topRight: {
     right: 0,
   },
   playerImg: {
@@ -70,62 +78,40 @@ const styles = {
       maxWidth: 360,
     },
     '@media (min-width: 1400px)': {
-      margin: '0 40px',
       maxWidth: 410,
     },
     height: 'auto',
     top: 'auto',
     bottom: 0,
   },
+  playerImgLeft: {
+    left: 0,
+  },
+  playerImgRight: {
+    right: 50,
+    bottom: 50,
+  },
+  orange: {
+    color: orange,
+  },
+  title1: {
+    fontWeight: 300,
+    fontSize: '5em',
+    lineHeight: '1em',
+    letterSpacing: '10px',
+  },
+  title2: {
+    fontWeight: 800,
+    fontSize: '11em',
+    lineHeight: '0.85em',
+  },
+  spacer: {
+    height: 20,
+  },
 }
 
 @Radium
 export default class ProductIntro extends Component {
-
-  componentDidMount() {
-    const that = this
-
-    /* eslint-disable */
-    window._wq = window._wq || []
-    _wq.push({
-      '_all': function (video) {
-
-        const analyticsData = {
-          videoId: video._hashedId,
-          jumpType: that.props.jumpType,
-        }
-
-        // play
-        video.bind('play', () => {
-          track(VIDEO_PLAYED, analyticsData)
-        })
-
-        // pause
-        video.bind('pause', () => {
-          track(VIDEO_PAUSED, analyticsData)
-        })
-
-        // crosstime on:
-        // 70 seconds
-        // 230 seconds
-        // 430 seconds
-        const times = [70, 230, 430]
-        times.map((time) => {
-          video.bind('crosstime', time, function () {
-            track(VIDEO_CROSSED_TIME, Object.assign({}, analyticsData, { time }))
-          })
-        })
-
-        // ended
-        video.bind('end', function () {
-          track(VIDEO_ENDED, analyticsData)
-        })
-
-      }
-    })
-    /* eslint-enable */
-
-  }
 
   shouldComponentUpdate(nextProps, nextState) {
     // pure render
@@ -134,16 +120,9 @@ export default class ProductIntro extends Component {
 
   render() {
 
-    /* eslint-disable */
     const {
-      videoId,
-      headerImgLeft,
-      headerImgRight,
-      playerLeft,
-      playerRight,
       transparentBg,
     } = this.props
-    /* eslint-enable */
 
     let introStyles = styles.Intro
 
@@ -157,6 +136,12 @@ export default class ProductIntro extends Component {
     return (
       <section style={introStyles}>
         <header style={styles.header}>
+
+          <img src={bballTopLeft} style={Object.assign({}, styles.headerImg, styles.topLeft)} alt='BBall Top Left' />
+          <img src={bballTopRight} style={Object.assign({}, styles.headerImg, styles.topRight)} alt='BBall Top Right' />
+          <img src={kp} style={Object.assign({}, styles.headerImg, styles.playerImg, styles.playerImgLeft)} alt='KP' />
+          <img src={emblem} style={Object.assign({}, styles.headerImg, styles.playerImg, styles.playerImgRight)} alt='Emblem' />
+
           <Grid fluid>
             <Row>
               <Col xs={12}>
@@ -164,13 +149,19 @@ export default class ProductIntro extends Component {
                 <PhoneNumber />
               </Col>
             </Row>
-
+            <Row>
+              <Col xs={12}>
+                <div style={styles.title1}>Start Your Season Strong:<div style={styles.spacer} /></div>
+                <div style={styles.title2}><span style={styles.orange}>Become The Most</span></div>
+                <div style={styles.title2}>Dangerous Scoring Threat</div>
+                <div style={styles.title2}><span style={styles.orange}>On Your Team</span></div>
+                <div style={styles.title1}><div style={styles.spacer} />With Coach KP Potts</div>
+              </Col>
+            </Row>
           </Grid>
 
           <div className='clearfix'></div>
         </header>
-
-        <IntroVideo videoId={videoId} />
       </section>
     )
   }

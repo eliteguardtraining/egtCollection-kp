@@ -9,11 +9,14 @@ import ValidatorPropTypes from 'react-validator-prop-types'
 import Attention from 'universal/components/Attention/Attention'
 import ArrowDown from 'universal/components/ArrowDown/ArrowDown'
 import CallToAction from 'universal/modules/Product/components/CallToAction/CallToAction'
-import Guarantee from 'universal/components/Guarantee/GuaranteeLarge'
 import MainProduct from '../MainProduct/MainProduct'
-import MainProductAlt from '../MainProductAlt/MainProductAlt'
-import KPFLPartOne from '../KPFinishingLaunch/KPFLPartOne'
-import KPFLPartTwo from '../KPFinishingLaunch/KPFLPartTwo'
+import HTBAOTDProdShot from '../HTBAOTDProdShot/HTBAOTDProdShot'
+import HTBAOTDPartOne from '../KPBirthdaySale/HTBAOTDPartOne'
+import HTBAOTDPartTwo from '../KPBirthdaySale/HTBAOTDPartTwo'
+import HTFOAProdShot from '../HTFOAProdShot/HTFOAProdShot'
+import HTFOAPartOne from '../KPBirthdaySale/HTFOAPartOne'
+import HTFOAPartTwo from '../KPBirthdaySale/HTFOAPartTwo'
+import PriceTable from '../PriceTable/PriceTable'
 
 const styles = {
   blackText: {
@@ -91,25 +94,31 @@ export default class LongSale extends Component {
     return (
       <div>
 
-        <Attention pureText>
-          <div style={styles.howToBecome}>How To Become A <span style={styles.blackText}>Nasty</span></div>
-          <div style={styles.finisherAround}>Finisher Around The Rim</div>
-        </Attention>
+        <Attention tight />
 
-        <MainProduct bgColor={bgGrey} arrowDown={orange} />
+        <MainProduct bgColor={bgGrey} arrowDown={orange} {...this.props} />
 
-        <KPFLPartOne />
+        <HTBAOTDPartOne />
+        <HTBAOTDProdShot />
 
-        <MainProductAlt />
-
-        <Attention pureText>
+        <Attention tight pureText>
           <ArrowDown color='#f9f9f8' />
           <div style={styles.heresHow}>Here's How It Works</div>
         </Attention>
 
-        <KPFLPartTwo />
+        <HTBAOTDPartTwo />
 
-        <Guarantee theme='dark' />
+        <HTFOAPartOne />
+        <HTFOAProdShot />
+
+        <Attention tight pureText>
+          <ArrowDown color='#f9f9f8' />
+          <div style={styles.heresHow}>Here's How It Works</div>
+        </Attention>
+
+        <HTFOAPartTwo />
+
+        <PriceTable dollarOff={this.props.dollarOff} />
 
         <CallToAction
           {...this.props}

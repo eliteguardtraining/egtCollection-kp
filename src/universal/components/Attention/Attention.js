@@ -5,28 +5,20 @@ import { orange, black, white } from 'universal/styles/colors'
 import shallowCompare from 'react-addons-shallow-compare'
 import Radium from 'radium'
 
-const baseFontSize = 50
-
 const styles = {
   attention: {
     background: orange,
     fontWeight: accuBold,
     fontFamily: headerStack,
-    paddingTop: '.5em',
+    paddingTop: '.7em',
     paddingBottom: '.75em',
     paddingLeft: '.75em',
     paddingRight: '.75em',
     textAlign: 'center',
     textTransform: 'uppercase',
-    position: 'relative',
-    fontSize: `${pxToEm(baseFontSize - 20, 16)}rem`,
+    fontSize: '5rem',
     color: white,
-    '@media (min-width: 768px)': {
-      fontSize: `${pxToEm(baseFontSize - 10, 16)}rem`,
-    },
-    '@media (min-width: 992px)': {
-      fontSize: `${pxToEm(baseFontSize, 16)}rem`,
-    },
+    position: 'relative',
   },
   h1: {
     margin: '0 0 0 0',
@@ -49,33 +41,20 @@ export default class Attention extends Component {
       contained,
       pureText,
       big,
+      tight,
     } = this.props
 
-    let attentionStyle = styles.attention
-
-    if (theme === 'dark') {
-      attentionStyle = Object.assign({}, styles.attention, {
-        background: black,
-      })
-    }
-
-    if (theme === 'grey') {
-      attentionStyle = Object.assign({}, styles.attention, {
-        background: 'rgb(50,50,50)',
-      })
-    }
-
-    if (theme === 'dark-bevel') {
-      attentionStyle = Object.assign({}, styles.attention, {
-        background: 'linear-gradient(to bottom, #000000 0%,#1e1e1e 27%,#000000 55%,#1c1c1c 84%,#000000 100%)',
-        paddingTop: 5,
-        paddingRight: 0,
-        paddingBottom: 20,
-        paddingLeft: 0,
-      })
-    }
+    let attentionStyle = theme === 'dark' ? Object.assign({}, styles.attention, {
+      background: black,
+    }) : styles.attention
 
     let headingStyle = styles.h1
+
+    if (tight) {
+      attentionStyle = Object.assign({}, attentionStyle, {
+        padding: 15,
+      })
+    }
 
     if (contained) {
       attentionStyle = Object.assign({}, attentionStyle, {

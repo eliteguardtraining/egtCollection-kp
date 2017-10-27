@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
-import { white, orange } from 'universal/styles/colors'
+import pxToEm from 'universal/utils/pxToEm'
+import { white, black } from 'universal/styles/colors'
+import ArrowDown from 'universal/components/ArrowDown/ArrowDown'
 import { imgResponsive, centerBlock } from 'universal/styles/helpers'
 import shallowCompare from 'react-addons-shallow-compare'
 import Radium from 'radium'
-import { headerStack } from 'universal/styles/fonts'
+import { headerStack, accuMed } from 'universal/styles/fonts'
 
-// Components
-import ArrowDown from 'universal/components/ArrowDown/ArrowDown'
-import CountDown from 'universal/components/Countdown/Countdown'
-
-// Images
-import productImage from 'universal/images/packshot.png'
+import productImage from './images/packshot.png'
 import shadow from './images/bg-shadow.png'
 
 const styles = {
@@ -20,39 +17,41 @@ const styles = {
     backgroundColor: white,
     backgroundImage: `url(${shadow})`,
     backgroundRepeat: 'repeat-x',
-    backgroundPosition: 'bottom',
-    fontFamily: headerStack,
-    textTransform: 'uppercase',
-    textAlign: 'center',
-    fontSize: 10,
-    '@media (max-width: 767px)': {
-      fontSize: 6,
-    },
+    backgroundPosition: 'top',
+    backgroundSize: '100% 60%',
   },
   productImage: Object.assign({}, imgResponsive, centerBlock, {
+    marginTop: 30,
     paddingBottom: 40,
     maxWidth: 900,
     width: '100%',
+    zIndex: 1,
+    position: 'relative',
     '@media (max-width: 414px)': {
-      marginTop: 30,
-      paddingBottom: 30,
+      marginTop: 20,
     },
   }),
-  textContainer: {
-    margin: '40px 0 20px 0',
+  jetsLogo: Object.assign({}, imgResponsive, centerBlock),
+  normally: {
+    fontSize: `${pxToEm(60)}em`,
+    fontFamily: headerStack,
+    fontWeight: accuMed,
+    textAlign: 'center',
+    color: black,
+    lineHeight: '50px',
+    margin: '0 0 40px 0',
   },
-  title1: {
-    fontSize: '7.5em',
-    lineHeight: '1em',
-    fontWeight: 800,
-  },
-  title2: {
-    fontSize: '5.5em',
-    lineHeight: '1em',
-    fontWeight: 600,
-  },
-  orange: {
-    color: orange,
+  greyShelf: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    width: '100vw',
+    zIndex: 0,
+    height: 200,
+    background: 'linear-gradient(to bottom, #d4d2cc 0%,#f9f9f8 100%)',
+    '@media (max-width: 767px)': {
+      display: 'none',
+    },
   },
 }
 
@@ -67,8 +66,6 @@ export default class MainProduct extends Component {
     const {
       arrowDown,
       bgColor,
-      discount,
-      offerTimeRemaining,
     } = this.props
 
     let mainProductStyle = styles.mainProduct
@@ -82,24 +79,11 @@ export default class MainProduct extends Component {
           {arrowDown && <ArrowDown color={arrowDown} />}
           <Grid>
             <Row>
-              <Col xs={12} style={styles.textContainer}>
-                <div style={styles.title1}><span style={styles.orange}>Get</span> {discount}% Off <span style={styles.orange}>Both</span></div>
-                <div style={styles.title2}>Of KP's Top Programs Until...</div>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12}>
-                <CountDown
-                  inline
-                  timeRemaining={offerTimeRemaining}
-                />
-              </Col>
-            </Row>
-            <Row>
               <Col xs={12}>
                 <img src={productImage} style={styles.productImage} alt='Main product' />
               </Col>
             </Row>
+            <div style={styles.greyShelf} />
           </Grid>
         </section>
       </span>

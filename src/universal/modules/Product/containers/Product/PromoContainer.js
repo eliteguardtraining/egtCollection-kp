@@ -7,10 +7,6 @@ import { _getOfferState } from 'universal/utils/calculateOfferState'
 import moment from 'moment'
 import GLOBAL_NOW from 'universal/utils/dateOverride'
 
-// Images
-const headerImgLeft = 'https://dphk75aogf7d9.cloudfront.net/elite-dribbling-scoring/header_left.png'
-const headerImgRight = 'https://dphk75aogf7d9.cloudfront.net/elite-dribbling-scoring/header_right.png'
-
 @connect(mapStateToProps)
 export default class PromoContainer extends Component {
 
@@ -69,13 +65,7 @@ export default class PromoContainer extends Component {
       }
     }
 
-    const images = {
-      headerImgLeft,
-      headerImgRight,
-    }
-
-    /* eslint-disable */
-    let {
+    const {
       abandoned,
       affiliate,
       afterOffers,
@@ -84,19 +74,18 @@ export default class PromoContainer extends Component {
       betweenOffers,
       duringInitialOffer,
       duringReopenOffer,
-      email,
       reopen,
       reopenTwo,
-      experiments,
       ignoreTimer,
     } = this.props
-    /* eslint-enable */
 
     if ((afterOffers || betweenOffers) && !ignoreTimer && !abandoned) {
       productId = 'HTFOA67'
       salePrice = originalPrice
       discount = 0
     }
+
+    const dollarOff = originalPrice - salePrice
 
     if (duringInitialOffer || duringReopenOffer || abandoned || affiliate || reopen || reopenTwo || backdoor) {
 
@@ -105,7 +94,6 @@ export default class PromoContainer extends Component {
       }
 
       discount = Math.ceil(100 - (salePrice / originalPrice * 100))
-      const dollarOff = originalPrice - salePrice
       countdownText = abandoned ? 'Additional<br class="hidden-sm hidden-xs"/> 25% Discount <br class="hidden-sm hidden-xs"/>Activated' :
         `$${(dollarOff).toFixed(2)} Off Sale <br class="hidden-sm hidden-xs"/> Ends In...`
 
@@ -129,9 +117,10 @@ export default class PromoContainer extends Component {
       videoId,
       countdownText,
       optionsVideoId,
+      dollarOff,
     }
 
-    return <Promo {...this.props} {...product} {...promo} {...images} />
+    return <Promo {...this.props} {...product} {...promo} />
   }
 }
 

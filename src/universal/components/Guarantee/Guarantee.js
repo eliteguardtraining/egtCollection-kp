@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import Radium from 'radium'
-import { orange, white } from 'universal/styles/colors'
+import { orange, white, black } from 'universal/styles/colors'
 import { headerStack, bodyStack, proxReg, accuBold } from 'universal/styles/fonts'
 import { centerBlock, imgResponsive } from 'universal/styles/helpers'
 import pxToEm from 'universal/utils/pxToEm'
@@ -11,7 +11,7 @@ import guarantee from './images/guarantee.png'
 import guaranteeDark from './images/guaranteeDark.png'
 
 
-const baseFontSize = 16
+const baseFontSize = 20
 
 const stylesLight = {
   section: {
@@ -56,7 +56,7 @@ const stylesDark = {
     fontFamily: bodyStack,
     fontWeight: proxReg,
     color: white,
-    backgroundColor: orange,
+    backgroundColor: black,
     textAlign: 'center',
     '@media (min-width: 768px)': {
       textAlign: 'left',

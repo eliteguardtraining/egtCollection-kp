@@ -32,7 +32,7 @@ const styles = {
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% calc(100% - 50px)',
     maxWidth: 800,
-    margin: '0 auto',
+    margin: '-50px auto 0 auto',
     textAlign: 'center',
     paddingTop: 60,
     '@media (max-width: 768px)': {

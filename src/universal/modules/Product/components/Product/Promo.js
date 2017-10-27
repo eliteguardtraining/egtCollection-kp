@@ -99,7 +99,7 @@ export default class Product extends Component {
     const showTimeRemaining = !abandoned ? !ignoreTimer && !affiliate && !createdAsAbandon && offerTimeRemaining && !backdoor : true
     const showZeroTimeRemaining = !affiliate && !createdAsAbandon && !ignoreTimer && betweenOffers
     const showBeforeSale = beforeOffer
-    const showSaleEnded = betweenOffers && !backdoor && !abandoned
+    const showSaleEnded = (betweenOffers || afterOffers) && !backdoor && !abandoned
 
     return (
       <div style={!ignoreTimer ? appStyles : Object.assign({}, appStyles, { marginTop: 0 })}>

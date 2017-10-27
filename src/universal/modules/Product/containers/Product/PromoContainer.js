@@ -83,7 +83,7 @@ export default class PromoContainer extends Component {
     if (beforeOffer || duringInitialOffer || duringReopenOffer || abandoned || affiliate || reopen || reopenTwo || backdoor) {
 
       if (abandoned) {
-        salePrice = (Math.floor(`${salePrice * .75}` * 20) / 20)
+        salePrice = salePrice * .75
       }
 
       dollarOff = originalPrice - salePrice
@@ -139,7 +139,7 @@ function mapStateToProps(state, props) {
     duringReopenOffer: promo.get('duringReopenOffer'),
     betweenOffers: promo.get('betweenOffers'),
     afterOffers: promo.get('afterOffers'),
-    abandoned: location.query.special === 'ab' && GLOBAL_NOW.isAfter(moment('2017 08 01', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2017 08 23', 'YYYY MM DD').endOf('day')),
+    abandoned: location.query.special === 'ab',
     ignoreTimer: location.query.special === 'rt' && GLOBAL_NOW.isAfter(moment('2016 12 09', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2016 12 11', 'YYYY MM DD').endOf('day')),
     backdoor: location.query.special === 'test' || (location.query.special === 'rt' && GLOBAL_NOW.isAfter(moment('2016 12 09', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2016 12 11', 'YYYY MM DD').endOf('day'))),
     affiliate: location.query.special === 'aff',

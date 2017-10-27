@@ -30,9 +30,9 @@ export default class PromoContainer extends Component {
     const originalPrice = 67 * 2
     let salePrice = 33.50
     let discount = Math.ceil(100 - (salePrice / originalPrice * 100))
-    const productId = this.props.abandoned ? 'HTFOA25' : 'HTFOA33'
+    const productId = this.props.abandoned ? 'KPCOMBO3350AB' : 'KPCOMBO3350'
     const productIdVip = 'VIPFREETRIAL'
-    const abandonListId = 80851
+    const abandonListId = 84771
     const videoId = 'v97efnf3hn'
     let optionsVideoId
     let countdownText

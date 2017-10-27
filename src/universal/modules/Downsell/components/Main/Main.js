@@ -53,7 +53,7 @@ export default class Main extends Component {
   } = this.props
     /* eslint-enable */
 
-    const gaProduct = 'KP Finishing Downsell'
+    const gaProduct = 'KP Sale Downsell'
 
     // const experimentVariation = experiments.get(optionsExperiment);
     // track(VIEWED_EXPERIMENT, {optionsExperiment, experimentVariation});

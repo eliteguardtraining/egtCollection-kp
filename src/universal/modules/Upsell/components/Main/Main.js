@@ -44,7 +44,7 @@ export default class Main extends Component {
       duringInitialOffer,
     } = this.props
 
-    let gaProduct = 'KP Finishing'
+    let gaProduct = 'KP Sale'
     if (salePrice === originalPrice) {
       gaProduct = `${gaProduct} ${originalPrice}`
     } else {

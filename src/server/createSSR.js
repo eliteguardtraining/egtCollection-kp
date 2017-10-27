@@ -22,7 +22,7 @@ import promo from '../universal/utils/promo'
 import version from '../universal/utils/version'
 
 const { cookieLeadId } = leadStorageOptions
-const pageTitle = 'KP Finishing | Elite Guard Training'
+const pageTitle = 'KP Sale | Elite Guard Training'
 
 // https://github.com/systemjs/systemjs/issues/953
 

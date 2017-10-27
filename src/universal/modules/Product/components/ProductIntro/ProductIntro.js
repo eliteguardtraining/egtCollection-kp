@@ -72,13 +72,13 @@ const styles = {
       display: 'none',
     },
     '@media (min-width: 767px) and (max-width: 1179px)': {
-      maxWidth: 300,
+      maxWidth: 420,
     },
     '@media (min-width: 1180px) and (max-width: 1399px)': {
-      maxWidth: 360,
+      maxWidth: 500,
     },
     '@media (min-width: 1400px)': {
-      maxWidth: 410,
+      maxWidth: 600,
     },
     height: 'auto',
     top: 'auto',

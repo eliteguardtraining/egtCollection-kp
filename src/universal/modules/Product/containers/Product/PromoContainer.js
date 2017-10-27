@@ -26,7 +26,7 @@ export default class PromoContainer extends Component {
   render() {
 
     const startDate = moment('2017 10 01', 'YYYY MM DD').startOf('day').toDate()
-    const endDate = moment('2017 11 11', 'YYYY MM DD').endOf('day').toDate()
+    const endDate = moment('2017 11 12', 'YYYY MM DD').endOf('day').toDate()
     const originalPrice = 67 * 2
     let salePrice = 33.50
     let discount = Math.ceil(100 - (salePrice / originalPrice * 100))
@@ -139,7 +139,7 @@ function mapStateToProps(state, props) {
     duringReopenOffer: promo.get('duringReopenOffer'),
     betweenOffers: promo.get('betweenOffers'),
     afterOffers: promo.get('afterOffers'),
-    abandoned: location.query.special === 'ab',
+    abandoned: location.query.special === 'ab' && GLOBAL_NOW.isAfter(moment('2017 11 13', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2017 11 17', 'YYYY MM DD').endOf('day')),
     ignoreTimer: location.query.special === 'rt' && GLOBAL_NOW.isAfter(moment('2016 12 09', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2016 12 11', 'YYYY MM DD').endOf('day')),
     backdoor: location.query.special === 'test' || (location.query.special === 'rt' && GLOBAL_NOW.isAfter(moment('2016 12 09', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2016 12 11', 'YYYY MM DD').endOf('day'))),
     affiliate: location.query.special === 'aff',

@@ -48,12 +48,10 @@ const styles = {
     fontFamily: headerStack,
   },
   blackBg: {
-    backgroundImage: `url(${bgFadeTopBottom}`,
+    backgroundImage: `url(${bgFadeTopBottom})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundColor: 'black',
-    position: 'relative',
-    zIndex: 1,
   },
   proxBold: {
     fontFamily: bodyStack,
@@ -233,7 +231,7 @@ const styles = {
     fontWeight: 700,
     fontSize: 60,
     '@media (max-width: 767px)': {
-      fontSize: 24,
+      fontSize: 30,
     },
   },
   htbaotd: {
@@ -349,8 +347,6 @@ export default class EGTX2PartOne extends Component {
               </div>
             </Col>
           </Row>
-
-          <div style={{ marginBottom: -40 }} />
 
         </div >
         <div style={styles.blackBg}>

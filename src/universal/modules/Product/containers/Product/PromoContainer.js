@@ -25,12 +25,12 @@ export default class PromoContainer extends Component {
 
   render() {
 
-    const startDate = moment('2017 08 01', 'YYYY MM DD').startOf('day').toDate()
-    const endDate = moment('2017 08 20', 'YYYY MM DD').endOf('day').toDate()
-    const originalPrice = 67
+    const startDate = moment('2017 10 01', 'YYYY MM DD').startOf('day').toDate()
+    const endDate = moment('2017 11 11', 'YYYY MM DD').endOf('day').toDate()
+    const originalPrice = 67 * 2
     let salePrice = 33.50
     let discount = Math.ceil(100 - (salePrice / originalPrice * 100))
-    let productId = this.props.abandoned ? 'HTFOA25' : 'HTFOA33'
+    const productId = this.props.abandoned ? 'HTFOA25' : 'HTFOA33'
     const productIdVip = 'VIPFREETRIAL'
     const abandonListId = 80851
     const videoId = 'v97efnf3hn'
@@ -68,7 +68,6 @@ export default class PromoContainer extends Component {
     const {
       abandoned,
       affiliate,
-      afterOffers,
       backdoor,
       beforeOffer,
       betweenOffers,
@@ -76,23 +75,18 @@ export default class PromoContainer extends Component {
       duringReopenOffer,
       reopen,
       reopenTwo,
-      ignoreTimer,
     } = this.props
 
-    if ((afterOffers || betweenOffers) && !ignoreTimer && !abandoned) {
-      productId = 'HTFOA67'
-      salePrice = originalPrice
-      discount = 0
-    }
 
-    const dollarOff = originalPrice - salePrice
+    let dollarOff = 0
 
-    if (duringInitialOffer || duringReopenOffer || abandoned || affiliate || reopen || reopenTwo || backdoor) {
+    if (beforeOffer || duringInitialOffer || duringReopenOffer || abandoned || affiliate || reopen || reopenTwo || backdoor) {
 
       if (abandoned) {
         salePrice = (Math.floor(`${salePrice * .75}` * 20) / 20)
       }
 
+      dollarOff = originalPrice - salePrice
       discount = Math.ceil(100 - (salePrice / originalPrice * 100))
       countdownText = abandoned ? 'Additional<br class="hidden-sm hidden-xs"/> 25% Discount <br class="hidden-sm hidden-xs"/>Activated' :
         `$${(dollarOff).toFixed(2)} Off Sale <br class="hidden-sm hidden-xs"/> Ends In...`

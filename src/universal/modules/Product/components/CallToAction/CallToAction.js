@@ -11,28 +11,30 @@ import { track } from 'universal/utils/analytics'
 
 // Components
 import AddToCartButton from 'universal/components/AddToCartButton/AddToCartButton'
+import ArrowDown from 'universal/components/ArrowDown/ArrowDown'
 import CountDown from 'universal/components/Countdown/Countdown'
 
 // Images
 import cards from 'universal/components/AddToCartButton/images/payments.png'
 import securePayments from 'universal/images/secure_payments.png'
-import leftRightArrows from './images/left-right-arrows.png'
+import leftRightArrows from './images/left_right_arrows_orange.png'
 import packshot from 'universal/images/packshot.png'
 
 const baseFontSize = 65
 
 const styles = {
   container: {
+    position: 'relative',
     background: 'rgb(244,240,240)',
   },
   ctaContainer: {
     backgroundImage: `url(${leftRightArrows})`,
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
+    backgroundSize: '100% calc(100% - 50px)',
     maxWidth: 800,
     margin: '0 auto',
     textAlign: 'center',
-    paddingTop: 10,
+    paddingTop: 60,
     '@media (max-width: 768px)': {
       backgroundImage: 'none',
     },
@@ -65,7 +67,7 @@ const styles = {
     fontWeight: 600,
     textTransform: 'uppercase',
     fontSize: `${pxToEm(65, baseFontSize)}em`,
-    color: '#494949',
+    color: '#9a9a9a',
     marginTop: '0',
     lineHeight: '.9em',
   },
@@ -73,16 +75,16 @@ const styles = {
     fontFamily: headerStack,
     fontWeight: 800,
     textTransform: 'uppercase',
-    fontSize: `${pxToEm(85, baseFontSize)}em`,
+    fontSize: `${pxToEm(100, baseFontSize)}em`,
     color: orange,
     lineHeight: '.9em',
   },
   priceDesc: {
     fontFamily: headerStack,
-    fontWeight: 700,
+    fontWeight: 600,
     textTransform: 'uppercase',
-    fontSize: `${pxToEm(75, baseFontSize)}em`,
-    color: '#757575',
+    fontSize: `${pxToEm(70, baseFontSize)}em`,
+    color: black,
     margin: '5px auto 30px auto',
     lineHeight: '.9em',
     maxWidth: 700,
@@ -135,13 +137,14 @@ export default class CallToAction extends Component {
 
     return (
       <div style={styles.container}>
+        <ArrowDown color={orange} />
         <div style={styles.section}>
           <Row>
             <Col xs={12}>
-              <h4 style={styles.normalPrice}>Will Be ${originalPrice}</h4>
-              <h2 style={styles.priceToday}>Today Just ${(salePrice).toFixed(2)}</h2>
+              <h4 style={styles.normalPrice}>Normally ${originalPrice / 2} Each</h4>
+              <h2 style={styles.priceToday}>Right Now ${(salePrice).toFixed(2)} For Both</h2>
               <h3 style={styles.priceDesc}>
-                {discount}% Off Discount Ends In...
+                Your {discount}% Discount Ends In...
               </h3>
             </Col>
           </Row>
@@ -165,7 +168,6 @@ export default class CallToAction extends Component {
                   <Row>
                     <Col xs={12}>
                       <AddToCartButton
-                        contained
                         yellowRectangle
                         productId={productId}
                         abandonListId={abandonListId}

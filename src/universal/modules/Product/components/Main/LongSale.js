@@ -57,7 +57,7 @@ const styles = {
     fontSize: 70,
     fontWeight: 700,
     '@media (max-width: 767px)': {
-      fontSize: 30,
+      fontSize: 40,
     },
   },
 }
@@ -119,6 +119,8 @@ export default class LongSale extends Component {
         <HTFOAPartTwo />
 
         <PriceTable dollarOff={this.props.dollarOff} />
+
+        <Attention tight />
 
         <CallToAction
           {...this.props}

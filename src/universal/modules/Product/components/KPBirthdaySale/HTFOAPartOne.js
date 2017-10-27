@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Radium from 'radium'
 import shallowCompare from 'react-addons-shallow-compare'
-import { imgResponsive as imgResponsiveRaw } from 'universal/styles/helpers'
 import { orange } from 'universal/styles/colors'
-import { headerStack, bodyStack } from 'universal/styles/fonts'
+import { headerStack } from 'universal/styles/fonts'
 
 // Components
 import Video from 'universal/components/Video/Video'
@@ -13,9 +12,6 @@ import Video from 'universal/components/Video/Video'
 import bgFadeTopBottom from './images/bg_fade_top_bottom.png'
 
 // Styles
-const imgResponsive = Object.assign({}, imgResponsiveRaw, {
-  margin: '0 auto',
-})
 const styles = {
   contentContainer: {
     maxWidth: 1000,
@@ -24,7 +20,7 @@ const styles = {
     position: 'relative',
   },
   blackBg: {
-    backgroundImage: `url(${bgFadeTopBottom}`,
+    backgroundImage: `url(${bgFadeTopBottom})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundColor: 'black',
@@ -57,7 +53,7 @@ const styles = {
     fontWeight: 700,
     fontSize: 60,
     '@media (max-width: 767px)': {
-      fontSize: 24,
+      fontSize: 30,
     },
   },
   htfoab: {

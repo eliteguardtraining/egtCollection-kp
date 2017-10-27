@@ -34,7 +34,7 @@ const styles = {
     maxWidth: 900,
     width: '100%',
     '@media (max-width: 414px)': {
-      marginTop: 30,
+      marginTop: 50,
       paddingBottom: 30,
     },
   }),

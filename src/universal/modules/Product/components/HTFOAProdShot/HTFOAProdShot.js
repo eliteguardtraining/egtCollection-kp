@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
-import pxToEm from 'universal/utils/pxToEm'
-import { white, black } from 'universal/styles/colors'
+import { white } from 'universal/styles/colors'
 import ArrowDown from 'universal/components/ArrowDown/ArrowDown'
 import { imgResponsive, centerBlock } from 'universal/styles/helpers'
 import shallowCompare from 'react-addons-shallow-compare'
 import Radium from 'radium'
-import { headerStack, accuMed } from 'universal/styles/fonts'
 
 import productImage from './images/packshot.png'
 import shadow from './images/bg-shadow.png'
@@ -31,16 +29,6 @@ const styles = {
       marginTop: 20,
     },
   }),
-  jetsLogo: Object.assign({}, imgResponsive, centerBlock),
-  normally: {
-    fontSize: `${pxToEm(60)}em`,
-    fontFamily: headerStack,
-    fontWeight: accuMed,
-    textAlign: 'center',
-    color: black,
-    lineHeight: '50px',
-    margin: '0 0 40px 0',
-  },
   greyShelf: {
     position: 'absolute',
     left: 0,
@@ -50,7 +38,8 @@ const styles = {
     height: 200,
     background: 'linear-gradient(to bottom, #d4d2cc 0%,#f9f9f8 100%)',
     '@media (max-width: 767px)': {
-      display: 'none',
+      background: 'linear-gradient(to bottom, #ffffff 0%,#f9f9f8 100%)',
+      height: 30,
     },
   },
 }

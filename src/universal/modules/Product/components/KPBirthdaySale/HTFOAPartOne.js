@@ -96,7 +96,7 @@ export default class EGTX2PartOne extends Component {
               <div style={styles.prodIntro}>
                 <div style={styles.introducing}>Program #2</div>
                 <div style={styles.videoContainer}>
-                  <Video />
+                  <Video videoId='mtxcj73k4j' />
                 </div>
                 <div style={styles.htfoab}>How To Finish Over Anybody</div>
                 <div style={styles.withCoach}>With Coach KP Potts</div>

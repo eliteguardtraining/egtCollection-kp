@@ -4,14 +4,19 @@ import Radium from 'radium'
 import shallowCompare from 'react-addons-shallow-compare'
 import { orange } from 'universal/styles/colors'
 import { headerStack } from 'universal/styles/fonts'
+import { imgResponsive as imgResponsiveRaw } from 'universal/styles/helpers'
 
 // Components
 import Video from 'universal/components/Video/Video'
 
 // Images
 import bgFadeTopBottom from './images/bg_fade_top_bottom.png'
+import arrowsImage from './images/arrows.png'
 
 // Styles
+const imgResponsive = Object.assign({}, imgResponsiveRaw, {
+  margin: '0 auto',
+})
 const styles = {
   contentContainer: {
     maxWidth: 1000,
@@ -37,6 +42,9 @@ const styles = {
   blackEmphasis: {
     fontWeight: 800,
   },
+  egtX2ArrowsImg: Object.assign({}, imgResponsive, {
+    maxHeight: 360,
+  }),
   prodIntro: {
     paddingTop: 50,
     color: 'white',
@@ -93,6 +101,7 @@ export default class EGTX2PartOne extends Component {
         <div style={Object.assign({}, styles.contentContainer, { background: 'transparent' })}>
           <Row>
             <Col xs={12}>
+              <img src={arrowsImage} style={styles.egtX2ArrowsImg} alt='EGT X 2.0' />
               <div style={styles.prodIntro}>
                 <div style={styles.introducing}>Program #2</div>
                 <div style={styles.videoContainer}>

@@ -151,7 +151,7 @@ export default class ProductIntro extends Component {
             </Row>
             <Row>
               <Col xs={12}>
-                <div style={styles.title1}>Start Your Season Strong:<div style={styles.spacer} /></div>
+                <div style={styles.title1}>Happy Birthday KP!<div style={styles.spacer} /></div>
                 <div style={styles.title2}><span style={styles.orange}>Become The Most</span></div>
                 <div style={styles.title2}>Dangerous Scoring Threat</div>
                 <div style={styles.title2}><span style={styles.orange}>On Your Team</span></div>

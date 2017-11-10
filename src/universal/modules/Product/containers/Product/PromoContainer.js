@@ -43,8 +43,8 @@ export default class PromoContainer extends Component {
 
       const initialOfferStartDate = startDate
       const initialOfferEndDate = endDate
-      const reopenOfferStartDate = moment('2017 09 28', 'YYYY MM DD').startOf('day').toDate()
-      const reopenOfferEndDate = moment('2017 09 30', 'YYYY MM DD').endOf('day').toDate()
+      const reopenOfferStartDate = moment('2017 12 28', 'YYYY MM DD').startOf('day').toDate()
+      const reopenOfferEndDate = moment('2017 12 30', 'YYYY MM DD').endOf('day').toDate()
 
       promo = {
         promoOffer: true,
@@ -76,7 +76,6 @@ export default class PromoContainer extends Component {
       reopen,
       reopenTwo,
     } = this.props
-
 
     let dollarOff = 0
 

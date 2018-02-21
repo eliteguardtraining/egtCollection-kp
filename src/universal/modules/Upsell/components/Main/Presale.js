@@ -20,7 +20,6 @@ export default class Presale extends Component {
     duringReopenOffer: PropTypes.bool,
     dispatch: PropTypes.func,
     productId: PropTypes.string,
-    abandonListId: PropTypes.number,
     email: PropTypes.string,
     betweenOffers: PropTypes.bool,
     afterOffers: PropTypes.bool,
@@ -46,29 +45,11 @@ export default class Presale extends Component {
 
   render() {
 
-    /* eslint-disable */
     const {
       originalPrice,
       salePrice,
-      discount,
       offerTimeRemaining,
-      duringInitialOffer,
-      duringReopenOffer,
-      betweenOffers,
-      afterOffers,
-      dispatch,
-      productId,
-      abandonListId,
-      email,
-      videoId,
-      countdownText,
-      affiliate,
-      abandoned,
-      createdAsAbandon,
-      jumpType,
-      experiments,
     } = this.props
-    /* eslint-enable */
 
     return (
       <div>

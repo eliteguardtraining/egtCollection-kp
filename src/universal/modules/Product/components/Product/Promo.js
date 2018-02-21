@@ -73,20 +73,16 @@ export default class Product extends Component {
       this.startTimer()
     }
 
-    /* eslint-disable */
     const {
-      abandoned,
       affiliate,
       afterOffers,
       backdoor,
       beforeOffer,
       betweenOffers,
       countdownText,
-      createdAsAbandon,
       ignoreTimer,
       offerTimeRemaining,
     } = this.props
-    /* eslint-enable */
 
     const appStyles = Object.assign({}, styles.app)
 
@@ -94,12 +90,10 @@ export default class Product extends Component {
       appStyles.marginTop = 0
     }
 
-    console.log(this)
-
-    const showTimeRemaining = !abandoned ? !ignoreTimer && !affiliate && !createdAsAbandon && offerTimeRemaining && !backdoor : true
-    const showZeroTimeRemaining = !affiliate && !createdAsAbandon && !ignoreTimer && betweenOffers
+    const showTimeRemaining = true
+    const showZeroTimeRemaining = !affiliate && !ignoreTimer && betweenOffers
     const showBeforeSale = beforeOffer
-    const showSaleEnded = (betweenOffers || afterOffers) && !backdoor && !abandoned
+    const showSaleEnded = (betweenOffers || afterOffers) && !backdoor
 
     return (
       <div style={!ignoreTimer ? appStyles : Object.assign({}, appStyles, { marginTop: 0 })}>
@@ -107,8 +101,8 @@ export default class Product extends Component {
           {React.cloneElement(this.props.children, this.props)}
         </div>
         {showBeforeSale && <BeforeSale />}
-        {showTimeRemaining ? <FloatingCountdown abandoned={abandoned} timeRemaining={offerTimeRemaining} text={countdownText} /> : null}
-        {showZeroTimeRemaining ? <FloatingCountdown abandoned={abandoned} timeRemaining={0} text={countdownText} /> : null}
+        {showTimeRemaining ? <FloatingCountdown timeRemaining={offerTimeRemaining} text={countdownText} /> : null}
+        {showZeroTimeRemaining ? <FloatingCountdown timeRemaining={0} text={countdownText} /> : null}
         {showSaleEnded && <SaleEnded />}
         <Footer />
       </div>

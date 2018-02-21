@@ -42,13 +42,12 @@ export default class FloatingCountdown extends Component {
 
   render() {
     const {
-      abandoned,
       timeRemaining,
       text,
     } = this.props
     return (
       <div style={styles.countdown}>
-        <Countdown timeRemaining={timeRemaining} text={text} abandoned={abandoned} />
+        <Countdown timeRemaining={timeRemaining} text={text} />
       </div>
     )
   }

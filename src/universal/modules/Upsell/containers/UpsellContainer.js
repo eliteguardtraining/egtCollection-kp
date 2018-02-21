@@ -19,7 +19,6 @@ export default class UpsellContainer extends Component {
     jumpType: PropTypes.string,
     email: PropTypes.string,
     affiliate: PropTypes.bool,
-    abandon: PropTypes.bool,
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -36,7 +35,6 @@ export default class UpsellContainer extends Component {
     let discount = Math.ceil(100 - (salePrice / originalPrice * 100))
     let productId = 'HTBAOD20'
     const productIdVip = 'VIPFREETRIAL'
-    const abandonListId = null
     const videoId = '4k3ywb94xv'
     let optionsVideoId
     let countdownText
@@ -74,9 +72,7 @@ export default class UpsellContainer extends Component {
       headerImgRight,
     }
 
-    /* eslint-disable */
-    let {
-      abandoned,
+    const {
       affiliate,
       afterOffers,
       backdoor,
@@ -84,32 +80,24 @@ export default class UpsellContainer extends Component {
       betweenOffers,
       duringInitialOffer,
       duringReopenOffer,
-      email,
       reopen,
       reopenTwo,
-      experiments,
       ignoreTimer,
     } = this.props
-    /* eslint-enable */
 
-    if ((afterOffers || betweenOffers) && !ignoreTimer && !abandoned) {
+    if ((afterOffers || betweenOffers) && !ignoreTimer) {
       productId = 'HTBAOD67'
       salePrice = originalPrice
       discount = 0
     }
 
-    if (duringInitialOffer || duringReopenOffer || abandoned || affiliate || reopen || reopenTwo || backdoor) {
-
-      if (abandoned) {
-        salePrice = (Math.floor(`${salePrice * .75}` * 20) / 20)
-      }
+    if (duringInitialOffer || duringReopenOffer || affiliate || reopen || reopenTwo || backdoor) {
 
       discount = Math.ceil(100 - (salePrice / originalPrice * 100))
       // const dollarOff = originalPrice - salePrice
-      countdownText = abandoned ? 'Additional<br class="hidden-sm hidden-xs"/> 25% Discount <br class="hidden-sm hidden-xs"/>Activated' :
-        'Sale <br class="hidden-sm hidden-xs"/> Ends In...'
+      countdownText = 'Sale <br class="hidden-sm hidden-xs"/> Ends In...'
 
-      if (betweenOffers && !abandoned) {
+      if (betweenOffers) {
         countdownText = 'Sale has <br class="hidden-sm hidden-xs"/> Ended...'
       }
 
@@ -125,7 +113,6 @@ export default class UpsellContainer extends Component {
       discount,
       productId,
       productIdVip,
-      abandonListId,
       videoId,
       countdownText,
       optionsVideoId,
@@ -146,7 +133,6 @@ function mapStateToProps(state, props) {
   const mappedProps = {
     jumpType: lead.get('jumpType'),
     createdAt: lead.get('createdAt') ? new Date(lead.get('createdAt')) : null,
-    createdAsAbandon: lead.get('createdAsAbandon') || false,
     split: lead.get('split') || 0,
     email: lead.get('email') || location.query.contact || location.query['contact_fields[email]'] || undefined,
     leadId: lead.get('id'),
@@ -156,7 +142,6 @@ function mapStateToProps(state, props) {
     duringReopenOffer: promo.get('duringReopenOffer'),
     betweenOffers: promo.get('betweenOffers'),
     afterOffers: promo.get('afterOffers'),
-    abandoned: location.query.special === 'ab' && GLOBAL_NOW.isAfter(moment('2017 08 01', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2017 08 23', 'YYYY MM DD').endOf('day')),
     ignoreTimer: location.query.special === 'rt' && GLOBAL_NOW.isAfter(moment('2016 12 09', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2016 12 11', 'YYYY MM DD').endOf('day')),
     backdoor: location.query.special === 'test' || (location.query.special === 'rt' && GLOBAL_NOW.isAfter(moment('2016 12 09', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2016 12 11', 'YYYY MM DD').endOf('day'))),
     affiliate: location.query.special === 'aff',

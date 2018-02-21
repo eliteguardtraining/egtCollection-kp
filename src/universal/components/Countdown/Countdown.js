@@ -40,7 +40,6 @@ export default class Countdown extends Component {
 
   render() {
     const {
-      abandoned,
       inline,
       inCopy,
       text,
@@ -70,14 +69,10 @@ export default class Countdown extends Component {
     return (
       <div style={styles.countdown}>
         {text ? <p style={styles.p} dangerouslySetInnerHTML={createMarkup(text)} /> : null}
-        {!abandoned &&
-          <span>
-            <TimeUnit inCopy={inCopy} small={small} inline={inline} unit={'Days'} number={days} underlineColor={underlineColor} />
-            <TimeUnit inCopy={inCopy} small={small} inline={inline} unit={'Hours'} number={hours} underlineColor={underlineColor} />
-            <TimeUnit inCopy={inCopy} small={small} inline={inline} unit={'Minutes'} number={minutes} underlineColor={underlineColor} />
-            <TimeUnit inCopy={inCopy} small={small} inline={inline} unit={'Seconds'} number={seconds} underlineColor={underlineColor} />
-          </span>
-        }
+        <TimeUnit inCopy={inCopy} small={small} inline={inline} unit={'Days'} number={days} underlineColor={underlineColor} />
+        <TimeUnit inCopy={inCopy} small={small} inline={inline} unit={'Hours'} number={hours} underlineColor={underlineColor} />
+        <TimeUnit inCopy={inCopy} small={small} inline={inline} unit={'Minutes'} number={minutes} underlineColor={underlineColor} />
+        <TimeUnit inCopy={inCopy} small={small} inline={inline} unit={'Seconds'} number={seconds} underlineColor={underlineColor} />
       </div>
     )
   }

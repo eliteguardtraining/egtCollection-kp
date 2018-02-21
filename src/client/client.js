@@ -11,7 +11,6 @@ import routes from '../universal/routes/index'
 
 const {
   auth,
-  abandon,
   promo,
   navigator,
   routing,
@@ -25,7 +24,6 @@ const {
 // form & routing are currently regular JS objects. This may change in the future
 const initialState = Map([
   ['auth', fromJS(auth)],
-  ['abandon', fromJS(abandon)],
   ['promo', fromJS(promo)],
   ['navigator', fromJS(navigator)],
   ['routing', routing],

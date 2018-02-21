@@ -5,7 +5,6 @@ import shallowCompare from 'react-addons-shallow-compare'
 import { orange, black, white, bgGrey, mutedText } from 'universal/styles/colors'
 import { headerStack, accuBlack, accuMed } from 'universal/styles/fonts'
 import { track, ADDED_TO_CART } from 'universal/utils/analytics'
-import { addToAbandonList } from '../../../../ducks/abandon'
 
 // Components
 import AddToCartButton from 'universal/components/AddToCartButton/AddToCartButton'
@@ -109,21 +108,10 @@ export default class DownsellProducts extends Component {
     })
 
     if (email) {
-
-      /* eslint-disable */
-      const data = {
-        email,
-        abandonListId,
-        productId,
-      }
-      /* eslint-enable */
-
       const contactQuery = `&contact=${this.props.email}`
       if (contactQuery) {
         checkoutUrl = `${checkoutUrl}${contactQuery}`
       }
-
-      addToAbandonList(this.props.dispatch, data)
     }
 
     return document.location = checkoutUrl
@@ -132,14 +120,10 @@ export default class DownsellProducts extends Component {
 
   render() {
 
-    /* eslint-disable */
     const {
-      products,
-      abandonListId,
       dispatch,
       email,
     } = this.props
-    /* eslint-enable */
 
     const addScoringToCart = () => this.addToCart('EGTSCORING2.0')
     const addDribblingToCart = () => this.addToCart('EGTDRIBBLING2.0')
@@ -158,7 +142,6 @@ export default class DownsellProducts extends Component {
                 <div style={styles.productTitle}>Today Just $33.50</div>
                 <AddToCartButton
                   addToCart={addScoringToCart}
-                  abandonListId={abandonListId}
                   dispatch={dispatch}
                   email={email}
                   circle={false}
@@ -175,7 +158,6 @@ export default class DownsellProducts extends Component {
                 <AddToCartButton
                   addToCart={addDribblingToCart}
                   productId={'elitescoring'}
-                  abandonListId={abandonListId}
                   dispatch={dispatch}
                   email={email}
                   circle={false}
@@ -191,7 +173,6 @@ export default class DownsellProducts extends Component {
                 <div style={styles.productTitle}>Today Just $67</div>
                 <AddToCartButton
                   addToCart={addBothToCart}
-                  abandonListId={abandonListId}
                   dispatch={dispatch}
                   email={email}
                   circle={false}

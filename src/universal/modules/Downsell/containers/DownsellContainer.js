@@ -16,7 +16,6 @@ export default class DownsellContainer extends Component {
     jumpType: PropTypes.string,
     email: PropTypes.string,
     affiliate: PropTypes.bool,
-    abandon: PropTypes.bool,
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -33,7 +32,6 @@ export default class DownsellContainer extends Component {
     const discount = 100 - Math.ceil(salePrice / originalPrice * 100)
     const productId = 'EGTX2PHASE1'
     const productIdVip = 'VIPFREETRIAL'
-    const abandonListId = 80553
     const videoId = 'um5ni2s9mh'
     let optionsVideoId
     let countdownText
@@ -74,7 +72,6 @@ export default class DownsellContainer extends Component {
       duringReopenOffer,
       betweenOffers,
       afterOffers,
-      abandoned,
       affiliate,
       reopen,
       reopenTwo,
@@ -83,37 +80,12 @@ export default class DownsellContainer extends Component {
 
     countdownText = 'Sale Ends In...'
 
-    // if (duringInitialOffer || duringReopenOffer || abandoned || affiliate || betweenOffers || reopen || reopenTwo) {
-
-    //  // salePrice = abandoned ? 35.25 : salePrice;
-    //  // productId = abandoned ? 'EGTPGAB' : 'EGTPG';
-
-    //   if (affiliate) {
-    //     salePrice = 97;
-    //     productId = 'EGTPG';
-    //   }
-
-    //   discount = 100 - Math.ceil(salePrice / originalPrice * 100);
-    //   let dollarOff = originalPrice - salePrice;
-    //   countdownText = abandoned ? 'Extra 25% <br class="hidden-sm hidden-xs"/> Discount' :
-    //     `$${dollarOff} Off Sale <br class="hidden-sm hidden-xs"/> Ends In...`;
-
-    //   if (betweenOffers) {
-    //     countdownText = `Sale has <br class="hidden-sm hidden-xs"/> Ended...`;
-    //   }
-    // }
-
-    // if (beforeOffer) {
-    //   countdownText = `Sale Begins <br class="hidden-sm hidden-xs"/> In...`;
-    // }
-
     const product = {
       originalPrice,
       salePrice,
       discount,
       productId,
       productIdVip,
-      abandonListId,
       videoId,
       countdownText,
       optionsVideoId,
@@ -135,7 +107,6 @@ function mapStateToProps(state, props) {
   let mappedProps = {
     jumpType: lead.get('jumpType'),
     createdAt: lead.get('createdAt') ? new Date(lead.get('createdAt')) : null,
-    createdAsAbandon: lead.get('createdAsAbandon') || false,
     split: lead.get('split') || 0,
     email: lead.get('email') || location.query.contact || location.query['contact_fields[email]'] || undefined,
     leadId: lead.get('id'),
@@ -145,7 +116,6 @@ function mapStateToProps(state, props) {
     duringReopenOffer: promo.get('duringReopenOffer'),
     betweenOffers: promo.get('betweenOffers'),
     afterOffers: promo.get('afterOffers'),
-    abandoned: (location.query.special === 'ab') ? true : location.query.abandon || false,
     affiliate: (location.query.special === 'aff') ? true : false,
     experiments: experiments.get('experiments') || null,
   }

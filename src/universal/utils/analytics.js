@@ -361,11 +361,3 @@ analyticsEvents.on(CLICKED_CHECKOUT, (data) => {
   fbTrack('InitiateCheckout')
   gaEvent(CLICKED_CHECKOUT)
 })
-
-// Google Analytics Dimensions
-// ---------------------------
-
-// Dimension 1 - should be the same as the page title and only goes on the sale page on each funnel and any future promo pages "EJT Sale Page", "USB Promo Page" and so on.  Also differentiate the "special" cases so you'd have "EJT Aff" or "EJT Sale Abandons Page" "Signature Sale Abandons Page" and so on.
-// Dimension 4 - should be on the lander and on the sale page and any promo pages, it is the value of utm_source or source query parameter.
-// Dimension 8 - should be on any sale pages and any promo pages.  It should set the value from the "utm_campaign" query parameter in the URL
-// Dimension 3 - should be set on the sale pages of both funnels and any promo pages.  This should account for multiple sources of input, one is the "utm_content" parameter which will sometimes be in the sales page URL when they come from email links. Or in the case where they just opted in and came from the lander, it would be the date they opted in, in the format DDMMYY.

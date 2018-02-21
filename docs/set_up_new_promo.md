@@ -21,7 +21,6 @@ only steps necessary to rolling out a new promo is changing variables and images
 ### Development
 * Change promo prices in src/univeral/modules/Product/containers/Product/PromoContainer
 * Change productId in src/univeral/modules/Product/containers/Product/PromoContainer
-* Change abandonListId in src/univeral/modules/Product/containers/Product/PromoContainer
 * Change offer dates in Promo, Upsell, and Downsell
 * Change gaProduct for Promo, Upsell, and Downsell
 * Make whatever design changes are necessary

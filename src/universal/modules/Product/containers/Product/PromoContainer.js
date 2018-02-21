@@ -15,7 +15,6 @@ export default class PromoContainer extends Component {
     jumpType: PropTypes.string,
     email: PropTypes.string,
     affiliate: PropTypes.bool,
-    abandon: PropTypes.bool,
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -28,11 +27,10 @@ export default class PromoContainer extends Component {
     const startDate = moment('2017 10 01', 'YYYY MM DD').startOf('day').toDate()
     const endDate = moment('2017 11 12', 'YYYY MM DD').endOf('day').toDate()
     const originalPrice = 67 * 2
-    let salePrice = 33.50
+    const salePrice = 33.50
     let discount = Math.ceil(100 - (salePrice / originalPrice * 100))
-    const productId = this.props.abandoned ? 'KPCOMBO3350AB' : 'KPCOMBO3350'
+    const productId = 'KPCOMBO3350'
     const productIdVip = 'VIPFREETRIAL'
-    const abandonListId = 84771
     const videoId = 'v97efnf3hn'
     let optionsVideoId
     let countdownText
@@ -66,7 +64,6 @@ export default class PromoContainer extends Component {
     }
 
     const {
-      abandoned,
       affiliate,
       backdoor,
       beforeOffer,
@@ -79,18 +76,13 @@ export default class PromoContainer extends Component {
 
     let dollarOff = 0
 
-    if (beforeOffer || duringInitialOffer || duringReopenOffer || abandoned || affiliate || reopen || reopenTwo || backdoor) {
-
-      if (abandoned) {
-        salePrice = salePrice * .75
-      }
+    if (beforeOffer || duringInitialOffer || duringReopenOffer || affiliate || reopen || reopenTwo || backdoor) {
 
       dollarOff = originalPrice - salePrice
       discount = Math.ceil(100 - (salePrice / originalPrice * 100))
-      countdownText = abandoned ? 'Additional<br class="hidden-sm hidden-xs"/> 25% Discount <br class="hidden-sm hidden-xs"/>Activated' :
-        `$${(dollarOff).toFixed(2)} Off Sale <br class="hidden-sm hidden-xs"/> Ends In...`
+      countdownText = `$${(dollarOff).toFixed(2)} Off Sale <br class="hidden-sm hidden-xs"/> Ends In...`
 
-      if (betweenOffers && !abandoned) {
+      if (betweenOffers) {
         countdownText = 'Sale has <br class="hidden-sm hidden-xs"/> Ended...'
       }
 
@@ -106,7 +98,6 @@ export default class PromoContainer extends Component {
       discount,
       productId,
       productIdVip,
-      abandonListId,
       videoId,
       countdownText,
       optionsVideoId,
@@ -128,7 +119,6 @@ function mapStateToProps(state, props) {
   const mappedProps = {
     jumpType: lead.get('jumpType'),
     createdAt: lead.get('createdAt') ? new Date(lead.get('createdAt')) : null,
-    createdAsAbandon: lead.get('createdAsAbandon') || false,
     split: lead.get('split') || 0,
     email: lead.get('email') || location.query.contact || location.query['contact_fields[email]'] || undefined,
     leadId: lead.get('id'),
@@ -138,7 +128,6 @@ function mapStateToProps(state, props) {
     duringReopenOffer: promo.get('duringReopenOffer'),
     betweenOffers: promo.get('betweenOffers'),
     afterOffers: promo.get('afterOffers'),
-    abandoned: location.query.special === 'ab' && GLOBAL_NOW.isAfter(moment('2017 11 13', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2017 11 17', 'YYYY MM DD').endOf('day')),
     ignoreTimer: location.query.special === 'rt' && GLOBAL_NOW.isAfter(moment('2016 12 09', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2016 12 11', 'YYYY MM DD').endOf('day')),
     backdoor: location.query.special === 'test' || (location.query.special === 'rt' && GLOBAL_NOW.isAfter(moment('2016 12 09', 'YYYY MM DD').startOf('day')) && GLOBAL_NOW.isBefore(moment('2016 12 11', 'YYYY MM DD').endOf('day'))),
     affiliate: location.query.special === 'aff',

@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import shallowCompare from 'react-addons-shallow-compare'
 import ValidatorPropTypes from 'react-validator-prop-types'
-import { addToAbandonList } from 'universal/ducks/abandon'
 import { track, page, ADDED_TO_CART, PROMO_PAGE } from 'universal/utils/analytics'
 
 // Components
@@ -23,7 +22,6 @@ export default class Main extends Component {
     duringReopenOffer: PropTypes.bool,
     dispatch: PropTypes.func,
     productId: PropTypes.string,
-    abandonListId: PropTypes.number,
     email: PropTypes.string,
     betweenOffers: PropTypes.bool,
     afterOffers: PropTypes.bool,
@@ -36,7 +34,6 @@ export default class Main extends Component {
     const {
       originalPrice,
       salePrice,
-      abandoned,
       affiliate,
       betweenOffers,
       afterOffers,
@@ -53,9 +50,6 @@ export default class Main extends Component {
     if (duringReopenOffer) {
       gaProduct = `${gaProduct} Reopen`
     }
-    if (abandoned) {
-      gaProduct = `${gaProduct} Abandon`
-    }
     if (affiliate) {
       gaProduct = `${gaProduct} Aff`
     }
@@ -63,7 +57,6 @@ export default class Main extends Component {
     const phase = afterOffers ? 'After offers' : betweenOffers ? 'Between offers' : duringReopenOffer ? 'During reopen offer' : duringInitialOffer ? 'During initial offer' : 'Before offers'
     page(PROMO_PAGE, {
       salePrice,
-      abandoned,
       affiliate,
       gaProduct,
       phase,
@@ -80,8 +73,6 @@ export default class Main extends Component {
 
     const {
       email,
-      abandonListId,
-      abandoned,
       betweenOffers,
       afterOffers,
       duringReopenOffer,
@@ -96,16 +87,7 @@ export default class Main extends Component {
       checkoutUrl = `${checkoutUrl}${leadQuery}`
     }
 
-    if (abandoned) {
-      const abandonedQuery = '&special=ab'
-      checkoutUrl = `${checkoutUrl}${abandonedQuery}`
-    }
-
     let optionsUrl = '/options?'
-
-    if (abandoned) {
-      optionsUrl += '&special=ab'
-    }
 
     if (this.props.location.query.special === 'rt') {
       optionsUrl += '&special=rt'
@@ -123,18 +105,10 @@ export default class Main extends Component {
     })
 
     if (email) {
-      const data = {
-        email,
-        abandonListId,
-        productId,
-      }
-
       const contactQuery = `&contact=${this.props.email}`
       if (contactQuery) {
         checkoutUrl = `${checkoutUrl}${contactQuery}`
       }
-
-      addToAbandonList(this.props.dispatch, data)
     }
 
     return document.location = checkoutUrl

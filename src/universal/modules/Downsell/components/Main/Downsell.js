@@ -74,7 +74,6 @@ export default class LongSale extends Component {
     duringReopenOffer: PropTypes.bool,
     dispatch: PropTypes.func,
     productId: PropTypes.string,
-    abandonListId: PropTypes.number,
     email: PropTypes.string,
     betweenOffers: PropTypes.bool,
     afterOffers: PropTypes.bool,
@@ -88,9 +87,6 @@ export default class LongSale extends Component {
 
   render() {
 
-    console.log(this.state)
-
-    /* eslint-disable */
     const {
       addToCart,
       backdoor,
@@ -98,25 +94,13 @@ export default class LongSale extends Component {
       originalPrice,
       salePrice,
       discount,
-      duringInitialOffer,
-      offerTimeRemaining,
       duringReopenOffer,
-      betweenOffers,
       ignoreTimer,
       afterOffers,
       dispatch,
       productId,
-      abandonListId,
       email,
-      videoId,
-      countdownText,
-      affiliate,
-      abandoned,
-      createdAsAbandon,
-      jumpType,
-      experiments,
     } = this.props
-    /* eslint-enable */
 
     return (
       <div>
@@ -148,8 +132,6 @@ export default class LongSale extends Component {
           discount={discount}
           ignoreTimer={ignoreTimer}
           productId={productId}
-          abandoned={abandoned}
-          abandonListId={abandonListId}
           email={email}
           addToCart={addToCart}
         />

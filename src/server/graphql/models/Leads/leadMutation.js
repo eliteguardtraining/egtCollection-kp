@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import r from '../../../database/rethinkdriver'
-import { Lead, NewLead, UpdatedLead, AbandonLead } from './leadSchema'
+import { Lead, NewLead, UpdatedLead } from './leadSchema'
 import { errorObj } from '../utils'
 import { GraphQLNonNull, GraphQLBoolean, GraphQLID, GraphQLString } from 'graphql'
 import { GraphQLEmailType } from '../types'
@@ -148,76 +148,4 @@ export default {
   //     return !!result.deleted;
   //   }
   // },
-  addToAbandonList: {
-    type: AbandonLead,
-    args: {
-      email: { type: new GraphQLNonNull(GraphQLEmailType) },
-      abandonListId: { type: new GraphQLNonNull(GraphQLString) },
-      // source: {type: GraphQLString},
-      // keyword: {type: GraphQLString},
-      // jumpType: {type: GraphQLString},
-    },
-    async resolve(source, { email, abandonListId }, { rootValue }) {
-
-      let mpContact, lead
-
-      const existingLead = await getLeadByEmail(email)
-      if (existingLead) {
-        let updates = {
-          abandonded: true,
-          abandondedAt: r.now(),
-          abandonListId,
-        }
-        lead = await r.table('leads').get(existingLead.id).update(updates, { returnChanges: true })
-        winston.log('info', 'Lead from landing page added to potential abandon list', { abandonListId, lead })
-      } else {
-
-        const generatedId = uuid.v4()
-        let newLead = {
-          id: generatedId,
-          email,
-          abandonListId,
-          createdAt: r.now(),
-          abandonded: true,
-          abandondedAt: r.now(),
-          createdAsAbandon: true,
-        }
-
-        lead = await r.table('leads').insert(newLead, { returnChanges: true })
-        if (!lead.inserted) {
-          winston.log('info', 'Could not add lead to abandon list', { abandonListId, newLead })
-        }
-      }
-
-      let leadData = lead.changes[0].new_val
-
-      // attempt to create in maropost
-      try {
-
-        mpContact = await createMaropostContact(abandonListId, leadData)
-
-        if (!mpContact.subscribed) {
-          winston.log('info', 'Could not subscribe lead', { leadData, mpContact })
-          throw errorObj({ _error: 'Subscription attempt was unsuccessful', 'email': 'Unable to subscribe' })
-        }
-
-        leadData.abandonState = leadCreationStates.MAROPOST_SUBSCRIBED
-        leadData.maropostAbandon = mpContact
-
-        let { id, ...updates } = leadData
-        lead = await r.table('leads').get(leadData.id).update(updates, { returnChanges: true })
-        winston.log('info', 'Lead was added to maropost abandon list:', { abandonListId, lead })
-
-      } catch (err) {
-        leadData.abandonState = leadCreationStates.MAROPOST_ERROR
-        leadData.maropostAbandon = mpContact || 'No results returned'
-
-        let { id, ...maropostFailedUpdates } = leadData
-        lead = await r.table('leads').get(id).update(maropostFailedUpdates, { returnChanges: true })
-        winston.log('info', 'Could not subscribe lead', { leadData, mpContact })
-      }
-
-      return lead.changes[0].new_val
-    },
-  },
 }

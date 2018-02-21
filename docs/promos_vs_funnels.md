@@ -65,7 +65,7 @@ The time structure of Promos:
 
 1. Main Sale: 5-7 days (has options page step)
 2. Main Sale Re-opens: +3 days after Main sale ended. (has options page step)
-3. Upsell Re-offers + Abandons + Retargeting: +4 days after Main sale ended.
+3. Upsell Re-offers + Retargeting: +4 days after Main sale ended.
 4. Downsell Offer: +7 days after Main sale ended. (has options page step)
 
 Each of these pages open and close at pre-set times based on Eastern US time.  There are no page states based on users created date and there are fewer time based states.
@@ -73,7 +73,6 @@ Each of these pages open and close at pre-set times based on Eastern US time.  T
 ### Main Sale Page
 
 * Discounted state during sale and the re-open.  Two open and close times.
-* Abandons state (25% off and no timer) when special=ab is present in URL.  This is not time based.
 * RT state, opens discounted page when special=rt is present. Open and close times.
 * Other special=xxx state, opens discounted page state and may have set timer or not.  Only will need sometimes when we have affiliates.
 
@@ -94,4 +93,3 @@ Each of these pages open and close at pre-set times based on Eastern US time.  T
 ### Notes on Promos:
 
 * Pages that have open/close times should have a de-activated add-to-cart button when time is outside of our preset range.
-* Main sale page should have the correct abandon list id relevant to the promo and this should be tested to be functioning before (Isaac please add notes on needing a database setup etc for this)

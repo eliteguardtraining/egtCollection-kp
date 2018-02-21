@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import DownsellIntro from '../DownsellIntro/DownsellVideoIntro'
 import Downsell from './Downsell'
-import { addToAbandonList } from '../../../../ducks/abandon'
 import shallowCompare from 'react-addons-shallow-compare'
 import ValidatorPropTypes from 'react-validator-prop-types'
 import { track, page, ADDED_TO_CART, DOWNSELL_PAGE } from 'universal/utils/analytics'
@@ -27,7 +26,6 @@ export default class Main extends Component {
     duringReopenOffer: PropTypes.bool,
     dispatch: PropTypes.func,
     downsellProductId: PropTypes.string,
-    abandonListId: PropTypes.number,
     email: PropTypes.string,
     betweenOffers: PropTypes.bool,
     afterOffers: PropTypes.bool,
@@ -36,22 +34,6 @@ export default class Main extends Component {
   state = { optionsModalV1Open: false, optionsModalV2Open: false }
 
   componentDidMount() {
-
-    /* eslint-disable */
-    const {
-    downsellPrice,
-      salePrice,
-      abandoned,
-      affiliate,
-      betweenOffers,
-      afterOffers,
-      offerTimeRemaining,
-      duringReopenOffer,
-      duringInitialOffer,
-      leadId,
-      experiments
-  } = this.props
-    /* eslint-enable */
 
     const gaProduct = 'KP Sale Downsell'
 
@@ -71,22 +53,15 @@ export default class Main extends Component {
 
   addToCart = () => {
 
-    /* eslint-disable */
     const {
       email,
-      abandonListId,
       productId,
-      originalPrice,
-      salePrice,
-      experiments,
-      dispatch,
       leadId,
       afterOffers,
       betweenOffers,
       duringReopenOffer,
       duringInitialOffer,
     } = this.props
-    /* eslint-enable */
 
     let checkoutUrl = `/checkout/?id=${productId}`
     if (leadId) {
@@ -102,21 +77,10 @@ export default class Main extends Component {
     })
 
     if (email) {
-
-      /* eslint-disable */
-      const data = {
-        email,
-        abandonListId,
-        productId,
-      }
-      /* eslint-enable */
-
       const contactQuery = `&contact=${this.props.email}`
       if (contactQuery) {
         checkoutUrl = `${checkoutUrl}${contactQuery}`
       }
-
-      addToAbandonList(this.props.dispatch, data)
     }
 
     return document.location = checkoutUrl
@@ -130,26 +94,14 @@ export default class Main extends Component {
 
   render() {
 
-    /* eslint-disable */
     const {
       betweenOffers,
       beforeOffer,
       afterOffers,
       videoId,
-      jumpType,
-      experiments,
-      headerText,
-      headerImgLeft,
-      headerImgRight,
-      playerLeft,
-      playerRight,
-      productId,
-      productIdVip,
       offerTimeRemaining,
-      abandoned,
       countdownText,
     } = this.props
-    /* eslint-enable */
 
     const showTimeRemaining = offerTimeRemaining && !betweenOffers
 
@@ -157,7 +109,7 @@ export default class Main extends Component {
       <div>
 
         {beforeOffer && <BeforeSale />}
-        {showTimeRemaining && <FloatingCountdown abandoned={abandoned} timeRemaining={offerTimeRemaining} text={countdownText} />}
+        {showTimeRemaining && <FloatingCountdown timeRemaining={offerTimeRemaining} text={countdownText} />}
         {(betweenOffers || afterOffers) && <SaleEnded />}
 
         <FixedPositionBG

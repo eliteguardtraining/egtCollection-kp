@@ -74,7 +74,6 @@ export default class LongSale extends Component {
     duringReopenOffer: PropTypes.bool,
     dispatch: PropTypes.func,
     productId: PropTypes.string,
-    abandonListId: PropTypes.number,
     email: PropTypes.string,
     betweenOffers: PropTypes.bool,
     afterOffers: PropTypes.bool,

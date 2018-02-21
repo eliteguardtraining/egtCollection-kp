@@ -6,7 +6,6 @@ import { track, CLICKED_CHECKOUT } from 'universal/utils/analytics'
 import { white, darkGrey, orange } from 'universal/styles/colors'
 import shallowCompare from 'react-addons-shallow-compare'
 import ValidatorPropTypes from 'react-validator-prop-types'
-import { addToAbandonList } from '../../../../ducks/abandon'
 
 import yesBtnBg from './images/yes_btn_bg.png'
 import noBtnBg from './images/no_btn_bg.png'
@@ -289,7 +288,6 @@ export default class Main extends Component {
     dispatch: PropTypes.func,
     productId: PropTypes.string,
     productIdVip: PropTypes.string,
-    abandonListId: PropTypes.number,
     email: PropTypes.string,
   };
 
@@ -300,29 +298,21 @@ export default class Main extends Component {
 
   addToCart = () => {
 
-    /* eslint-disable */
     const {
       email,
-      abandonListId,
-      originalPrice,
       salePrice,
-      abandoned,
       affiliate,
-      beforeOffers,
       betweenOffers,
       afterOffers,
       offerTimeRemaining,
       duringReopenOffer,
       duringInitialOffer,
       leadId,
-      dispatch,
       productId,
     } = this.props
-    /* eslint-enable */
 
     track(CLICKED_CHECKOUT, {
       salePrice,
-      abandoned,
       affiliate,
       betweenOffers,
       afterOffers,
@@ -337,18 +327,10 @@ export default class Main extends Component {
     let checkoutUrl = `/checkout/?id=${productId}`
 
     if (email) {
-      const data = {
-        email,
-        abandonListId,
-        productId,
-      }
-
       const contactQuery = `&contact=${this.props.email}`
       if (contactQuery) {
         checkoutUrl = `${checkoutUrl}${contactQuery}`
       }
-
-      addToAbandonList(this.props.dispatch, data)
     }
 
     return document.location = checkoutUrl
@@ -356,13 +338,9 @@ export default class Main extends Component {
 
   addToCartVip = () => {
 
-    /* eslint-disable */
     const {
       email,
-      abandonListId,
-      originalPrice,
       salePrice,
-      abandoned,
       affiliate,
       betweenOffers,
       afterOffers,
@@ -370,15 +348,12 @@ export default class Main extends Component {
       duringReopenOffer,
       duringInitialOffer,
       leadId,
-      dispatch,
       productId,
       productIdVip,
     } = this.props
-    /* eslint-enable */
 
     track(CLICKED_CHECKOUT, {
       salePrice,
-      abandoned,
       affiliate,
       betweenOffers,
       afterOffers,
@@ -393,18 +368,10 @@ export default class Main extends Component {
     let checkoutUrl = `https://eliteguardtraining.com/checkout/?id=${productId},${productIdVip}`
 
     if (email) {
-      const data = {
-        email,
-        abandonListId,
-        productIdVip,
-      }
-
       const contactQuery = `&contact=${this.props.email}`
       if (contactQuery) {
         checkoutUrl = `${checkoutUrl}${contactQuery}`
       }
-
-      addToAbandonList(this.props.dispatch, data)
     }
 
     return document.location = checkoutUrl
@@ -412,15 +379,10 @@ export default class Main extends Component {
 
   render() {
 
-    /* eslint-disable */
     const {
-      originalPrice,
-      salePrice,
-      discount,
       isOpen,
       closeModal,
     } = this.props
-    /* eslint-enable */
 
     return (
       <Dialog

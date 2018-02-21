@@ -4,7 +4,6 @@ import { combineReducers } from 'redux-immutablejs'
 import navigator from '../ducks/navigator'
 import leads from '../ducks/leads'
 import promo from '../ducks/promo'
-import abandon from '../ducks/abandon'
 import experiments from '../ducks/experiments'
 import analytics from '../ducks/analytics'
 import cart from '../ducks/cart'
@@ -16,7 +15,6 @@ const currentReducers = {
   routing,
   form,
   promo,
-  abandon,
   experiments,
   analytics,
   cart,

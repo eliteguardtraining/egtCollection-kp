@@ -111,18 +111,13 @@ export default class CallToAction extends Component {
 
   render() {
 
-    /* eslint-disable */
     const {
-      originalPrice,
       salePrice,
-      discount,
-      abandonListId,
       productId,
       dispatch,
       email,
       addToCart,
     } = this.props
-    /* eslint-enable */
 
     const visibilityChange = (isVisible) => {
       isVisible && track('Scrolled to Call To Action')
@@ -152,7 +147,6 @@ export default class CallToAction extends Component {
                         contained
                         yellowRectangle
                         productId={productId}
-                        abandonListId={abandonListId}
                         dispatch={dispatch}
                         email={email}
                         addToCart={addToCart}

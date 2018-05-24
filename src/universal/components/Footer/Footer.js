@@ -4,6 +4,7 @@ import Radium from 'radium'
 import { bodyStack } from 'universal/styles/fonts'
 import { white, black } from 'universal/styles/colors'
 import shallowCompare from 'react-addons-shallow-compare'
+import moment from 'moment'
 
 
 const styles = {
@@ -66,7 +67,7 @@ export default class Footer extends Component {
         <Grid>
           <Row>
             <Col xs={12}>
-              <span style={styles.copyright}>Copyright © 2017 EliteGuardTraining.com</span> &nbsp;&nbsp;|&nbsp;&nbsp; <a style={footerLinkStyle} href='https://eliteguardtraining.com'>Home</a>
+              <span style={styles.copyright}>Copyright © {moment().format('YYYY')} EliteGuardTraining.com</span> &nbsp;&nbsp;|&nbsp;&nbsp; <a style={footerLinkStyle} href='https://eliteguardtraining.com'>Home</a>
             </Col>
           </Row>
           <Row>

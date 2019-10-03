@@ -81,13 +81,13 @@ export const alias = (id) => {
 export const exception = (description, fatal = false) => {
   !__PRODUCTION__ && window.console && console.log('exception', eventName, data)
   analyticsEvents.emit('exception', { description, fatal })
-  gaException(description, fatal)
+  
 }
 export const identify = (id, data) => {
   !__PRODUCTION__ && window.console && console.log('identify', id, data)
   maropostIdentify(data)
   mixpanelIdentify(id, data)
-  gaIdentify(data.id)
+  
 }
 export const page = (pageName, data) => {
   !__PRODUCTION__ && window.console && console.log('page', pageName, data)
@@ -99,7 +99,7 @@ export const page = (pageName, data) => {
 export const timing = (timingCategory, timingVar, timingValue, timingLabel, fields) => {
   !__PRODUCTION__ && window.console && console.log('Timing: ', timingCategory, timingVar, timingValue, timingLabel, fields)
   analyticsEvents.emit('timing', { timingCategory, timingVar, timingValue, timingLabel, fields })
-  gaTiming(timingCategory, timingVar, timingValue, timingLabel, fields)
+  
 }
 export const track = (eventName, data) => {
   !__PRODUCTION__ && window.console && console.log('track', eventName, data)
@@ -297,14 +297,14 @@ analyticsEvents.on(LANDER_PAGE, (data) => {
 
 })
 analyticsEvents.on(CLICKED_SEND_WORKOUT, (data) => {
-  gaEvent(CLICKED_SEND_WORKOUT)
+  
 })
 analyticsEvents.on(LEAD_SUBMITTED, (data) => {
-  gaEvent(LEAD_SUBMITTED)
+  
 })
 analyticsEvents.on(LEAD_CREATED, (data) => {
   fbTrack('Lead')
-  gaEvent(LEAD_CREATED)
+  
   twitterConversion()
 })
 
@@ -339,7 +339,7 @@ analyticsEvents.on(SALE_PAGE, (data) => {
 })
 analyticsEvents.on(ADDED_TO_CART, (data) => {
   fbTrack('AddToCart')
-  gaEvent(ADDED_TO_CART)
+  
 })
 
 
@@ -359,5 +359,5 @@ analyticsEvents.on(OPTIONS_PAGE, (data) => {
 })
 analyticsEvents.on(CLICKED_CHECKOUT, (data) => {
   fbTrack('InitiateCheckout')
-  gaEvent(CLICKED_CHECKOUT)
+  
 })

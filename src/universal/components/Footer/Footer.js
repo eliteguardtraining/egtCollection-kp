@@ -73,11 +73,7 @@ export default class Footer extends Component {
           <Row>
             <Col xs={12}>
               <p style={styles.disclaimer}>
-                Disclaimer: Consult a physician and follow all safety
-                instructions. Every effort has been made to accurately
-                represent the potential of this training. Results are not
-                typical, and only represent players who worked very hard.
-                Of course, no guarantee can be made for every single player.
+                Disclaimer: By using this website, you agree to follow all safety instructions. Elite Guard Training LTD. and it's coaches will not be held liable for any damages that may occur from training. Results are not typical, and only represent players who worked very hard.
                 You can view our <a style={footerLinkStyle} href='/faqs' target='_blank'>newsletter FAQ here</a>.
                 See our <a style={footerLinkStyle} href='/privacy-policy' target='_blank'>privacy policy here</a>.
                 Read our <a style={footerLinkStyle} href='/disclaimer' target='_blank'>full disclaimer here</a>.

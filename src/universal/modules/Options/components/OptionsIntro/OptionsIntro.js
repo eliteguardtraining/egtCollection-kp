@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import IntroVideo from 'universal/components/IntroVideo/IntroVideo'
-import PhoneNumber from 'universal/components/PhoneNumber/PhoneNumber'
 import Radium from 'radium'
 import shallowCompare from 'react-addons-shallow-compare'
 import { imgResponsive } from 'universal/styles/helpers'
@@ -113,11 +112,8 @@ export default class ProductIntro extends Component {
         <header style={styles.header}>
           <Grid fluid>
             <Row>
-              <Col xs={6}>
+              <Col xs={12}>
                 <img style={styles.brand} src={logo} alt='logo' />
-              </Col>
-              <Col xs={6}>
-                <PhoneNumber />
               </Col>
             </Row>
 

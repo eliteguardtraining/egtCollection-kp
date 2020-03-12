@@ -3,7 +3,6 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import { black } from 'universal/styles/colors'
 import Radium from 'radium'
 import logo from 'universal/images/logo-fill.png'
-import PhoneNumber from 'universal/components/PhoneNumber/PhoneNumber'
 import { imgResponsive } from 'universal/styles/helpers'
 
 const styles = {
@@ -37,11 +36,8 @@ export default class LogoPhoneHeader extends Component {
         <header style={styles.header}>
           <Grid>
             <Row>
-              <Col xs={6}>
+              <Col xs={12}>
                 <img style={styles.brand} src={logo} alt='logo' />
-              </Col>
-              <Col xs={6}>
-                <PhoneNumber fill />
               </Col>
             </Row>
           </Grid>

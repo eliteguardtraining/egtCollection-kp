@@ -4,7 +4,6 @@ import { headerStack, accuBlack } from 'universal/styles/fonts'
 import { black, white } from 'universal/styles/colors'
 import Radium from 'radium'
 import logo from 'universal/images/egtLogo.png'
-import PhoneNumber from 'universal/components/PhoneNumber/PhoneNumber'
 import { imgResponsive } from 'universal/styles/helpers'
 
 
@@ -59,11 +58,8 @@ export default class NavbarHeader extends Component {
         <header style={styles.header}>
           <Grid>
             <Row>
-              <Col xs={6}>
+              <Col xs={12}>
                 <img style={styles.brand} src={logo} alt='logo' />
-              </Col>
-              <Col xs={6}>
-                <PhoneNumber />
               </Col>
             </Row>
           </Grid>

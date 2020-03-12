@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
-import PhoneNumber from 'universal/components/PhoneNumber/PhoneNumber'
 import Radium from 'radium'
 import shallowCompare from 'react-addons-shallow-compare'
 import { imgResponsive } from 'universal/styles/helpers'
@@ -96,11 +95,8 @@ export default class OptionsIntro extends Component {
         <header style={styles.header}>
           <Grid>
             <Row>
-              <Col xs={6} md={4} mdOffset={2}>
+              <Col xs={12}>
                 <img style={styles.brand} src={logo} alt='logo' />
-              </Col>
-              <Col xs={6} md={4}>
-                <PhoneNumber float='right' />
               </Col>
             </Row>
           </Grid>

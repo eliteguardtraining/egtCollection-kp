@@ -102,7 +102,7 @@
     "deep-equal": "1.0.1",
     "es6-promisify": "3.0.0",
     "express": "4.13.3",
-    "express-jwt": "3.3.0",
+    "express-jwt": "6.0.0",
     "extract-text-webpack-plugin": "1.0.1",
     "fake-style-loader": "1.0.0",
     "file-loader": "0.8.5",
